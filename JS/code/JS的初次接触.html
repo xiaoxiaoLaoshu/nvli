@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    .div1 {
+      display: none;
+      width: 150px;
+      height: 100px;
+      background-color: #ccc;
+      border: 1px solid #999;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="checkbox" id="checked">
+    <div class="div1">
+      为了你的安全。。。。
+    </div>
+  </div>
+</body>
+<script>
+  let oCheck = document.getElementById('checked');
+  let oDiv = document.getElementsByClassName('div1')
+  oCheck.onmouseover = function() {
+    oDiv[0].style.display = 'block';
+  }
+  oCheck.onmouseout = function() {
+    oDiv[0].style.display = 'none';
+  }
+</script>
+
+</html>

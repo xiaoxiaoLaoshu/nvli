@@ -6,6 +6,6 @@ JS是什么？给网页添加交互功能，通过用户操作（JS事件）修�
   4. 写出JS代码：在事件中，用JS代码来实现HTML元素的样式修改
 **鼠标提示框**
 ``` javascript
-  onmouseover = function() { display = 'block';}
-  onmouseout = function() { display = 'none';}
+  element.onmouseover = function() { display = 'block';}
+  element.onmouseout = function() { display = 'none';}
 ```

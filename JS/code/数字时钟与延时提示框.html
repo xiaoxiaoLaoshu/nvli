@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>数字时钟</title>
+  <style>
+    .container {
+      width: 100%;
+      height: 200px;
+      margin: 0 auto;
+      background: url(images/bg.png);
+      text-align: center;
+      font-size: 50px;
+      color: white;
+    }
+    div {
+      float: left;
+      margin: 10px;
+    }
+    #div1 {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+    }
+    #div2 {
+      display: none;
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+    .container1 {
+      width: 712px;
+      height: 108px;
+      margin: 100px auto;
+      position: relative;
+      overflow: hidden;
+      background: url(images/bg.png);
+    }
+    ul {
+      position: absolute;
+      left: 0;
+      top: 0;
+      list-style: none;
+    }
+    li {
+      float: left;
+      width: 178px;
+      height: 108px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 数字时钟 -->
+  <div class="container">
+    <img src="images/0.png">
+    <img src="images/0.png">
+    :
+    <img src="images/0.png">
+    <img src="images/0.png">
+    :
+    <img src="images/0.png">
+    <img src="images/0.png">
+  </div>
+  <!-- 延时提示框 -->
+  <div class="container">
+    <div id="div1">
+    </div>
+    <div id="div2">
+    </div>
+    <!-- 无缝滚动 -->
+    <div class="container1">
+      <ul>
+        <li><img src="img2/1.jpg"></li>
+        <li><img src="img2/2.jpg"></li>
+        <li><img src="img2/3.jpg"></li>
+        <li><img src="img2/4.jpg"></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    // 构造函数来补充不足两位数的零
+    function toDou(num) {
+      if (num < 10) {
+        return '0' + num;
+      } else {
+        return '' + num;
+      }
+    }
+    var aC = document.getElementsByClassName('container');
+    var aImg = aC[0].getElementsByTagName('img');
+    // 网页刚出现显示为00:00：00现象
+    function tick(){
+      var oDate = new Date();
+      var str = '';
+      str = toDou(parseInt(oDate.getHours())) + toDou(parseInt(oDate.getMinutes())) + toDou(parseInt(oDate
+        .getSeconds()));
+      for (let i = 0; i < aImg.length; i++) {
+        // 使用 string 的 charAt 方法，兼容所有浏览器
+        aImg[i].src = "images/" + str.charAt(i) + ".png";
+      }
+    }
+    // 使用间隔定时器，不断刷新图片的地址，达到时钟的计时效果
+    setInterval(tick, 1000);
+    // 解决网页刚出现显示为00:00：00现象
+    tick();
+    // 延时提示框
+    var oDiv1 = document.getElementById('div1');
+    var oDiv2 = document.getElementById('div2');
+    var timer = null;
+  
+    oDiv1.onmouseover = oDiv2.onmouseover = function(){
+      clearTimeout(timer);
+      oDiv2.style.display = 'block';
+    };
+    oDiv1.onmouseout = oDiv2.onmouseout = function(){
+      timer = setTimeout(function(){
+          oDiv2.style.display = 'none';
+      }, 500);
+    }
+    // 无缝滚动
+    var oUl = document.getElementsByTagName('ul');
+    var oLi = oUl[0].getElementsByTagName('li');
+    oUl[0].innerHTML += oUl[0].innerHTML; 
+    oUl[0].style.width = oLi[0].offsetWidth * oLi.length + 'px';
+    setInterval(function(){
+      // if(oUl[0].offsetLeft < -oUl[0].offsetWidth/2){
+      //   oUl[0].style.left = '0';
+      // }
+      if(oUl[0].offsetLeft >= 0){
+        oUl[0].style.left = -oUl[0].offsetWidth/2 + 'px';
+      }
+      oUl[0].style.left = oUl[0].offsetLeft + 2 + 'px';
+    }, 30);
+    
+    
+  </script>
+</body>
+
+</html>

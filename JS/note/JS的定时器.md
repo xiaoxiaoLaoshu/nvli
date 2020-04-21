@@ -100,17 +100,33 @@ setTimeout(function(){
   - 移入关闭定时器
   - 移出重新开启定时器
 ```javascript
-var oUl = document.getElementsByTagName('ul');
+// 无缝滚动
+    var oUl = document.getElementsByTagName('ul');
     var oLi = oUl[0].getElementsByTagName('li');
-    oUl[0].innerHTML += oUl[0].innerHTML; 
+    var oC = document.getElementsByClassName('container1')
+    oUl[0].innerHTML += oUl[0].innerHTML;
     oUl[0].style.width = oLi[0].offsetWidth * oLi.length + 'px';
-    setInterval(function(){
-      // if(oUl[0].offsetLeft < -oUl[0].offsetWidth/2){
-      //   oUl[0].style.left = '0';
-      // }
-      if(oUl[0].offsetLeft >= 0){
-        oUl[0].style.left = -oUl[0].offsetWidth/2 + 'px';
+
+    function move() {
+      // 向左走 - speed 
+      if (oUl[0].offsetLeft < -oUl[0].offsetWidth / 2) {
+        oUl[0].style.left = '0';
+      }
+      // 向右走 + speed
+      if (oUl[0].offsetLeft > 0) {
+        oUl[0].style.left = -oUl[0].offsetWidth / 2 + 'px';
       }
       oUl[0].style.left = oUl[0].offsetLeft + 2 + 'px';
-    }, 30);
+    }
+    var timer1 = null;
+    // 移入 停止滚动
+    oC[0].onmouseover = function () {
+      clearInterval(timer1);
+    }
+    // 移出开始滚动
+    oC[0].onmouseout = function () {
+      timer1 = setInterval(function () {
+        move();
+      }, 30);
+    }
 ```

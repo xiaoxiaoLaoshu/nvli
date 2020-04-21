@@ -84,4 +84,4 @@ div {
 7. 数组转换为字符串 arr1.john('连接符') `var arr1 = [1, 2, 3], arr2 = [4, 5, 6]; console.log(arr1.concat().john());` 输出为 123456
 8. 数组排序 arr.sort()
   1. 字符串排序,默认以此方式排序 `var arr1 = [b, a, c]; console.log(arr1.sort());` 输出为 （3） [a, b, c]
-  2. 数字排序，改变默认的数组排序 `var arr1 = [1, 2, 3], arr2 = [4, 5, 6];sort(function(n1, n2){ return n1 -n2;}); console.log(arr2.concat(arr1).sort());` 输出为 (6)[1, 2, 3, 4, 5, 6]
+  2. 数字排序，改变默认的数组排序 `var arr1 = [1, 2, 3], arr2 = [4, 5, 6];console.log(arr2.concat(arr1).sort(function(n1, n2){ return n1 -n2;}));` 输出为 (6)[1, 2, 3, 4, 5, 6]

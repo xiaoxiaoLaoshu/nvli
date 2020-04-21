@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DOM操作高级应用</title>
+  <style>
+    table td {
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="button" id="btn" value="排序">
+  </div>
+  <div class="container">
+    <table border="1">
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>姓名</td>
+          <td>成绩</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3</td>
+          <td>Blue</td>
+          <td>78</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>张三</td>
+          <td>98</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>李四</td>
+          <td>90</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>王五</td>
+          <td>80</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // 获取表格
+    var oTable = document.getElementsByTagName('table')[0];
+    // 获取表格中列的内容
+    var oTd = oTable.tBodies[0].rows[0].cells[1];
+    // 隔行变色
+    var oTr = oTable.tBodies[0].rows;
+    // 鼠标移出后恢复原有的背景色
+    var oldColor = '';
+    for (var i = 0; i < oTr.length; i++) {
+      if (i % 2 == 0) {
+        oTr[i].style.backgroundColor = '#ccc';
+      } else {
+        oTr[i].style.backgroundColor = '';
+      }
+      oTr[i].onmouseover = function () {
+        oldColor = this.style.backgroundColor;
+        this.style.backgroundColor = 'yellow';
+      };
+      oTr[i].onmouseout = function () {
+        this.style.backgroundColor = oldColor;
+      };
+    }
+    var oBtn = document.getElementById('btn');
+    oBtn.onclick = function () {
+      var arr = [];
+      // 转换为数组
+      for(var i = 0;i < oTr.length;i++){
+        arr.push(oTr[i]);
+      }
+      // 改造 数组的排序方法
+      arr.sort(function(tr1, tr2){
+        var n1 = parseInt(tr1.cells[0].innerHTML);
+        var n2 = parseInt(tr2.cells[0].innerHTML);
+        return n1 - n2;
+      });
+      // 追加排序后的节点
+      for(var i = 0;i < arr.length;i++){
+        oTable.tBodies[0].appendChild(arr[i]);
+      }
+    }
+  </script>
+</body>
+
+</html>

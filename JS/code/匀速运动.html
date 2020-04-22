@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #div1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      top: 50px;
+      left: 600px;
+    }
+    #div2 {
+      width: 1px;
+      height: 300px;
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      left: 100px;
+    }
+    #div3 {
+      width: 1px;
+      height: 300px;
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      left: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="到100" onclick="startMove(100)">
+  <input type="button" value="到300" onclick="startMove(300)">
+  <div id="div1"></div>
+  <div id="div2"></div>
+  <div id="div3"></div>
+  <script>
+    var timer = null;
+    function startMove(iTarget){
+      var oDiv = document.getElementById('div1');
+      clearInterval(timer);
+      timer = setInterval(function(){
+        var speed = 0;
+        if(iTarget > oDiv.offsetLeft){
+          speed = 7;
+        } else {
+          speed = -7;
+        }
+        // 匀速运动停止判断标准：距离足够近，因此用了绝对值，没有到的距离直接将运动的物体放到目标处。
+        if(Math.abs(iTarget - oDiv.offsetLeft) < 7){
+          clearInterval(timer);
+          oDiv.style.left = iTarget + 'px';
+        } else {
+          oDiv.style.left = oDiv.offsetLeft + speed +'px';
+        }
+      }, 30)
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>缓冲运动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #div1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      top: 50px;
+      left: 600px;
+    }
+
+    #div2 {
+      width: 1px;
+      height: 300px;
+      position: absolute;
+      background-color: #999;
+      top: 0;
+      left: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="开始运动">
+  <div id="div1">
+
+  </div>
+  <div id="div2">
+
+  </div>
+  <script>
+    var oDiv1 = document.getElementById('div1');
+    var oBtn = document.getElementsByTagName('input')[0];
+
+    oBtn.onclick = function () {
+      var timer = null;
+      var speed;
+      clearInterval(timer);
+      timer = setInterval(function () {
+        speed = (300 - oDiv1.offsetLeft) / 10;
+        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+        if (oDiv1.offsetLeft == 300) {
+          clearInterval(timer);
+        } else {
+          oDiv1.style.left = oDiv1.offsetLeft + speed + 'px';
+          document.title = oDiv1.style.left +  ',' + speed;
+        }
+      }, 30);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #div1 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      opacity: .3;
+      margin-bottom: 10px;
+    }
+    #div2 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      opacity: .3;
+      margin-bottom: 10px;
+
+    }
+    #div3 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      opacity: .3;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+  <div id="div3"></div>
+</body>
+  <script>
+    var aDiv = document.getElementsByTagName('div');
+    for(var i = 0;i < aDiv.length;i++){
+      // 多物体运动所有的变量不能公用
+      aDiv[i].timer = null;
+      aDiv[i].onmouseover = function(){
+        startMove(this, 1);
+      }
+      aDiv[i].onmouseout = function(){
+        startMove(this, 0.3);
+      }
+    }
+
+    function startMove(obj, iTarget) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        // 速度的取值为 目标 减去 现在值
+        var speed = (iTarget - obj.style.opacity)*100/10;
+        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+        if(obj.style.opacity == iTarget){
+          clearInterval(obj.timer);
+        } else {
+          obj.style.opacity = (obj.style.opacity * 100 + speed ) / 100;
+        };
+      }, 30)
+    }
+  </script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #div1 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      margin-bottom: 10px;
+    }
+    #div2 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      margin-bottom: 10px;
+
+    }
+    #div3 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+  <div id="div3"></div>
+</body>
+  <script>
+    var aDiv = document.getElementsByTagName('div');
+    for(var i = 0;i < aDiv.length;i++){
+      // 多物体运动所有的变量不能公用
+      aDiv[i].timer = null;
+      aDiv[i].onmouseover = function(){
+        startMove(this, 600);
+      }
+      aDiv[i].onmouseout = function(){
+        startMove(this, 100);
+      }
+    }
+
+    // 任意值运动框架,包括淡入淡出的效果
+  function startMove(obj, attr, iTarget) {
+    clearInterval(obj.timer);
+    obj.timer = setInterval(function () {
+      // 速度的取值为 目标 减去 现在值 将较为相似的部分封装称为参数 attr
+      // 为了使数据不出现小数尽量四舍五入转为整数
+      var cur = Math.round(parseFloat(getStyle(obj, attr)) * 100 );
+      var speed = (iTarget * 100 - cur)/ 10;
+      speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+      if (attr == 'opacity') {
+        if (cur == iTarget) {
+          clearInterval(obj.timer);
+        } else {
+          obj.style.opacity = (cur + speed) / 100;
+          console.log(obj.style.opacity);
+          
+        }
+      } else {
+        if (cur == iTarget) {
+          clearInterval(obj.timer);
+        } else {
+          // 将较为相似的部分封装称为参数 attr
+          obj.style[attr] = cur +
+            speed + 'px';
+        };
+      }
+    }, 30)
+  }
+  </script>
+</html>

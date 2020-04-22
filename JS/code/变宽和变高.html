@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #div1 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      border: 10px solid black;
+      opacity: .3;
+      margin-bottom: 10px;
+    }
+
+    #div2 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      border: 10px solid black;
+      margin-bottom: 10px;
+    }
+
+    #div3 {
+      width: 100px;
+      height: 150px;
+      background-color: red;
+      border: 10px solid black;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1">变宽</div>
+  <div id="div2">变高</div>
+  <div id="div3">adsgs</div>
+</body>
+<script>
+  function getStyle(obj, name) {
+    if (!getComputedStyle(obj, false)[name]) {
+      return obj.currentStyle[name];
+    } else {
+      return getComputedStyle(obj, false)[name];
+    }
+  }
+  var aDiv = document.getElementsByTagName('div');
+  aDiv[0].onmouseover = function () {
+    startMove(this, 'opacity', 1);
+  }
+  aDiv[0].onmouseout = function () {
+    startMove(this, 'opacity', .3);
+  }
+  aDiv[1].onmouseover = function () {
+    startMove(this, 'height', 600);
+  }
+  aDiv[1].onmouseout = function () {
+    startMove(this, 'height', 150);
+  }
+  aDiv[2].onmouseover = function () {
+    startMove(this, 'fontSize', 50);
+  }
+  aDiv[2].onmouseout = function () {
+    startMove(this, 'fontSize', 15);
+  }
+  // offset 的缺点 获取到的宽度和高度是盒子模型的所有宽度和高度，即元素内容加上内边距加边框加外边距，因此无法对加边框的元素使用
+  // 对运动框架进行改进
+
+  // 任意值运动框架,包括淡入淡出的效果
+  function startMove(obj, attr, iTarget) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function () {
+        // 速度的取值为 目标 减去 现在值 将较为相似的部分封装称为参数 attr
+        if (attr == 'opacity') {
+          // 为了使数据不出现小数尽量四舍五入转为整数
+          var cur = Math.round(parseFloat(getStyle(obj, attr)) * 100);
+          var speed = (iTarget * 100 - cur) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (cur == iTarget) {
+            clearInterval(obj.timer);
+          } else {
+            obj.style.opacity = (cur + speed) / 100;
+          }
+        } else {
+          var cur = (parseFloat(getStyle(obj, attr)));
+          var speed = (iTarget - cur) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (cur == iTarget) {
+            clearInterval(obj.timer);
+          } else {
+            // 将较为相似的部分封装称为参数 attr
+            obj.style[attr] = cur +
+              speed + 'px';
+          };
+        }
+      }, 30);
+    }
+  // function startMove2(obj, iTarget) {
+  //   clearInterval(obj.timer);
+  //   obj.timer = setInterval(function(){
+  //     // 速度的取值为 目标 减去 现在值
+  //     var speed = (iTarget - obj.offsetHeight)/10;
+  //     speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+  //     if(obj.style.width == iTarget){
+  //       clearInterval(obj.timer);
+  //     } else {
+  //       obj.style.height = obj.offsetHeight
+  //       + speed +'px';
+  //     };
+  //   }, 30)
+  // }
+</script>
+
+</html>

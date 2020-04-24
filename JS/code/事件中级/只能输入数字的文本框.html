@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="txt1">
+  <script>
+    var oTxt = document.getElementById('txt1');
+    oTxt.onkeydown = function(ev){
+      var oEvent = ev || event;
+      // 0 keycode 48  9 57
+      // 禁止非数字的按键输入,但是保留退格和光标的左右移动
+      if((oEvent.keyCode != 8 && oEvent.keyCode != 37 && oEvent.keyCode != 39) && (oEvent.keyCode < 47 || oEvent.keyCode > 58)){
+        return false;
+      }
+    };
+  </script>
+</body>
+
+</html>

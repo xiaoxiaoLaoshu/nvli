@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+<script>
+  document.onclick = function(ev){
+    // 事件的不兼容，该代码无法在 FF 下运行
+    // IE
+    alert(event.clientX+  ',' +event.clientY);
+    // FF
+    alert(ev.clientX+ ',' + ev.clientY);
+    // 处理 IE 和 FF 的兼容问题
+    var event = ev || event;
+  };
+</script>
+</body>
+
+</html>

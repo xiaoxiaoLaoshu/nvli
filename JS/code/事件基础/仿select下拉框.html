@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #div1 {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      background-color: #ccc;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" id="btn" value="显示">
+  <div id="div1">
+
+  </div>
+  <script>
+    var oBtn = document.getElementById('btn');
+    var oDiv = document.getElementById('div1');
+    oBtn.onclick = function(ev){
+      var oEvent = event || ev;
+      oDiv.style.display = 'block';
+      // 阻止点击事件传到 document 
+      oEvent.cancelBubble = true; 
+      
+    }
+    document.onclick = function(){
+      oDiv.style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>

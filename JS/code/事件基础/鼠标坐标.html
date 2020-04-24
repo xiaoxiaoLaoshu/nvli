@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #div1 {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      position: absolute;
+    }
+  </style>
+  <script>
+    // 封装成获取鼠标坐标的函数
+    function getPos(ev){
+      // X、Y 为 可视区的鼠标坐标
+      // 要精确获取 鼠标的 Y 坐标 ，需要加上 滚动条的 Y 坐标
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      return {x: ev.clientX, y: ev.clientY + scrollTop}
+    }
+    document.onmousemove = function (ev) {
+      var oEvent = ev || event;
+      var oDiv = document.getElementById('div1');
+      var pos = getPos(oEvent);
+      oDiv.style.left = pos.x + 'px';
+      oDiv.style.top = pos.y + 'px';
+    }
+  </script>
+</head>
+
+<body style="height: 2000px;">
+  <div id="div1">
+  </div>
+  
+</body>
+
+</html>

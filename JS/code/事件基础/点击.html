@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body style="border:1px solid #ccc">
+  <input type="button" value="点击">
+<script>
+  // 实现效果点击页面任意处弹出弹框
+  // 该方法无效。原因没有元素撑开 body,添加元素后也只能点击元素撑开区域生效。
+  document.body.onclick = function(){
+    alert('a');
+  };
+  // 真正的代码为
+  document.onclick = function(){
+    alert('aaa');
+  };
+  // 这里也有事件的冒泡，点击 body 后，弹出 a ，然后弹出 aaa。这里就是事件的冒泡，相同事件会逐步向上执行
+</script>
+</body>
+
+</html>

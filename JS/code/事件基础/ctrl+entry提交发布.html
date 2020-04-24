@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="txt1">
+  <!-- <input type="button" value="发布" id="btn"> -->
+  <textarea id="txt2" cols="30" rows="10"></textarea>
+</body>
+<script>
+  var oTxt1 = document.getElementById('txt1');
+  var oTxt2 = document.getElementById('txt2');
+  // var oBtn = document.getElementById('btn');
+  // 按钮提交
+  // oBtn.onclick = function(){
+  //   oTxt2.value += oTxt1.value + '\n';
+  //   oTxt1.value = '';
+  // }
+  // 按键提交 ctrl + entry
+  document.onkeydown = function (ev) {
+    var oEvent = ev || event;
+    if (oEvent.keyCode == 13 && oEvent.ctrlKey) {
+      oTxt2.value += oTxt1.value + '\n';
+      oTxt1.value = '';
+    }
+  };
+</script>
+
+</html>

@@ -56,3 +56,11 @@ function startMove(obj, json, fnEnd) {
     }
   }, 30);
 }
+// 获取鼠标坐标
+function getPos(ev) {
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  return {
+    x: ev.clientX,
+    y: ev.clientY + scrollTop
+  };
+};

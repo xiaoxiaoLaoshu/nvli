@@ -48,18 +48,18 @@ div {
 封装成函数
 ```javascript
   function getStyle(obj, name){
-  if(!obj.currentStyle[name]){
+  if(obj.currentStyle){
     // 在 IE 下使用
-    return getComputedStyle(obj, false)[name];
+    return obj.currentStyle[name];
   } else {
     // 在 FF 谷歌浏览器下使用
-    return obj.currentStyle[name];
+    return getComputedStyle(obj, false)[name];
   }
 }
 ```
 **注意**上面的函数不能获取复合样式的值，如 background、border、position
 ##### 数组
-- 定义
+- 创建方法
 1. `var a = [1, 2, 3];`
 2. `var a = new Array(1, 2, 3);`
 - length 的使用
@@ -69,6 +69,10 @@ div {
   console.log(a);
   a.length = 5;
   console.log(a);
+  // 数组的循环输出
+  for(var i = 0;i < a.length;i++){
+    console.log(a[i]);
+  }
 ```
 输出为 (3)[1, 2, 3] (5)[1, 2,empty * 3]
 - 数组基本方法

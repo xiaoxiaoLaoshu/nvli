@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #div1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+    }
+    #div2 {
+      width: 800px;
+      height: 700px;
+      background-color: #ccc;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div2">
+    <div id="div1">
+    </div>
+  </div>
+  <script>
+    var oDiv = document.getElementById('div1');
+    var oDiv1 = document.getElementById('div2');
+    var disX = 0;
+    var disY = 0;
+
+    oDiv.onmousedown = function (ev) {
+      var oEvent = ev || event;
+      disX = oEvent.clientX - oDiv.offsetLeft;
+      disY = oEvent.clientY - oDiv.offsetTop;
+      document.onmousemove = function (ev) {
+        var oEvent = ev || event;
+        // 阻止用户拖拽出页面
+        var l = oEvent.clientX - disX;
+        var t = oEvent.clientY - disY;
+        // 防止从左边拖出
+        // 磁性吸附
+        if (l < 50) {
+          l = 0;
+        } else if (l > oDiv1.offsetWidth - oDiv.offsetWidth) {
+          // 防止从右边拖出
+          l = oDiv1.offsetWidth - oDiv.offsetWidth
+        };
+        // 防止从上边拖出
+        // 
+        if (t < 100) {
+          t = 0;
+        } else if (t > oDiv1.offsetHeight - oDiv.offsetHeight) {
+          // 防止从下边拖出
+          t = oDiv1.offsetHeight - oDiv.offsetHeight;
+        };
+        oDiv.style.left = l + 'px';
+        oDiv.style.top = t + 'px';
+      };
+
+      document.onmouseup = function () {
+        document.onmousemove = null;
+        document.onmouseup = null;
+      };
+      // 消除 FF 中空div会出现另一个div的 bug，同时解决在 chrom、FF、ie9 中 取消拖拽时会选中文字的问题
+      return false;
+    };
+  </script>
+</body>
+
+</html>

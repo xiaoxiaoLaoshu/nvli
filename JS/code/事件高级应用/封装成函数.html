@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+<input type="button" value="按钮" id="btn">
+<script>
+  // 事件绑定函数
+  function myAddEvent(obj, evName, fn){
+    if(obj.attachEvent){
+      obj.attachEvent('on' + evName, fn);
+    } else {
+      obj.addEventListener(evName, fn, false);
+    }
+  }
+
+  var oBtn = document.getElementById('btn');
+  myAddEvent(oBtn, 'click', function(){
+    alert('a');
+  });
+  myAddEvent(oBtn, 'click', function(){
+    alert('b');
+  });
+</script>
+</body>
+
+</html>

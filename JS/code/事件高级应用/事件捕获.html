@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+<input type="button" value="按钮" id="btn">
+<script>
+  var oBtn = document.getElementById('btn');
+
+  oBtn.onclick = function(){
+    alert('a');
+  };
+  // 仅在 IE6/7/8中使用，其他浏览器无效
+  // 事件捕获，将其他元素的所有事件改为指定元素的事件
+  // oBtn.setPCapture();
+</script>
+</body>
+
+</html>

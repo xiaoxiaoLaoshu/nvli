@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="button" value="按钮" id="btn">
+  <script>
+    var oBtn = document.getElementById('btn');
+
+    // attachEvenet(事件名， 函数)
+    // IE 使用
+    /*
+    oBtn.attachEvent('onclick', function(){
+      alert('a');
+    });
+    oBtn.attachEvent('onclick', function(){
+      alert('b');
+    });
+    */
+    // FF 谷歌
+    // addEventListener(事件名， 函数， false)
+    // oBtn.addEventListener('click', function(){
+    //   alert('a');
+    // }, false);
+    // oBtn.addEventListener('click', function(){
+    //   alert('b');
+    // }, false);
+    // 处理兼容性问题
+    if (oBtn.attachEvent) {
+      oBtn.attachEvent('onclick', function () {
+        alert('a');
+      });
+      oBtn.attachEvent('onclick', function () {
+        alert('b');
+      });
+    } else {
+      oBtn.addEventListener('click', function () {
+        alert('a');
+      }, false);
+      oBtn.addEventListener('click', function () {
+        alert('b');
+      }, false);
+    }
+  </script>
+</body>
+
+</html>

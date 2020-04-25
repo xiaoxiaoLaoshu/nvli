@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #div2 {
+      width: 600px;
+      height: 20px;
+      background-color: #ccc;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    #div1 {
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      position: absolute;
+    }
+
+    #div3 {
+      background-color: green;
+      position: absolute;
+    }
+
+    #div4 {
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+      background-color: pink;
+      position: relative;
+      border: 1px solid black;
+      top: 400px;
+      left: 0;
+    }
+    #div5 {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div2">
+    <div id="div1"></div>
+  </div>
+  <div id="div3">
+    </div>
+<div id="div4">
+      <div id="div5">
+        作者：开心果若冰
+        链接：https://www.nowcoder.com/discuss/416131
+        来源：牛客网
+
+        2020秋招应届生，非科班，无实习，准备了半年，拿到了鹅厂和菊厂的提前批开发岗offer。在此，非常感谢牛客网提供的平台和各位大佬的相助，分享一篇C++学习路线和学习项目反馈牛客网，希望对大家有帮助。
+
+        作为非科班转行C++的大多数小伙伴来说，一开始更多的关注点是不知道怎么准备，不知道看什么，想知道面试官考什么，然后有针对性的学。
+
+        在牛客网潜水这么久，很多小伙伴都在求面经，其实更多的时候面经意义没有特别大。这里，结合我的秋招经历说几句实话：
+
+        面试官没有一成不变的提问方式，每个部门，甚至每个组对相同职位的理解和面试的难度，广度和深度都有不小的差异。
+        面经是锦上添花，不是雪中送炭。寄希望于面经通过面试的概率比较低，这种情况只适用特别小的公司，因为面试官就那几个人，稍微有点规模就不适用。
+        只要你不停止找工作，学习永远是无底洞，学是学不完的...不要寄希望于面试的全都会，那很难。反过来想，如果面试官问的你都能回答，那么你还有必要去这个公司吗？
+        我还没准备好，怕面试答不上来怎么办。没有万事俱备的事情，等你全部准备好了才去面试，估计秋招都结束了。
+        没必要把每一次面试都当做实战，给自己过大的压力。有些面试可以当做实战前的演练，大家都不认识，面试不好有什么关系呢？
+        去年3月份开学后，我确定了就业方向，打算找C++后台开发的相关工作，但当时基础太弱，根本不知道如何准备。经常逛知乎，牛客网，CSDN，每每看到一个学习资源和路线后就抓紧收藏，如获至宝。
+
+        资料是越存越多，如同找到了一个学习列表，但内心更多的是焦虑多过开心。一方面找到了学习方向和路线，内心狂喜；另一方面发现里面提到的知识点几乎全都不会，不知从何看起。
+
+        现在回想当时为什么焦虑，是因为不会吗？可能是，但更多的应该是，铺天盖地的知识点，一头雾水，不知道从何学起。有些知识点不会，我可以学，但没有路线，能否坚持、学习效率和学习产出都是未知数。
+
+        大部分学习路线都给了推荐的书，也给了知识点，但要怎么学，先学什么，后学什么，学完有什么项目可以练手检验？这些从回答里没看到特别具体的。
+
+        去年秋招自己和同学一起慢慢摸索过来，在这里先把我秋招资源和总结链接放上，希望能对各位有用，没有密码，按需自取就好了。
+      </div>
+  </div>
+  <script>
+    var oDiv = document.getElementById('div1');
+    var oDiv1 = document.getElementById('div2');
+    var oDiv2 = document.getElementById('div3');
+    var oDiv3 = document.getElementById('div4');
+    var oDiv4 = document.getElementById('div5');
+    var disX = 0;
+
+    oDiv.onmousedown = function (ev) {
+      var oEvent = ev || event;
+
+      disX = oEvent.clientX - oDiv.offsetLeft;
+      disY = oEvent.clientY - oDiv.offsetTop;
+      // IE7下
+      if (oDiv.setCapture) {
+        oDiv.onmousemove = mouseMove;
+        oDiv.onmouseup = mouseUp;
+      } else {
+        // 在 chrom、FF、IE9下
+        document.onmousemove = mouseMove;
+        document.onmouseup = mouseUp;
+        // 消除 FF 中空div会出现另一个div的 bug，同时解决在 chrom、FF、ie9 中 取消拖拽时会选中文字的问题
+        return false;
+      }
+      // 代码合并
+      function mouseMove(ev) {
+        var oEvent = ev || event;
+        // 阻止用户拖拽出页面
+        var l = oEvent.clientX - disX;
+        // 防止从左边拖出
+        // 磁性吸附
+        if (l < 0) {
+          l = 0;
+        } else if (l > oDiv1.offsetWidth - oDiv.offsetWidth) {
+          // 防止从右边拖出
+          l = oDiv1.offsetWidth - oDiv.offsetWidth
+        };
+        oDiv.style.left = l + 'px';
+
+        var scale = l / (oDiv1.offsetWidth - oDiv.offsetWidth);
+        // 实现对 指定元素的 宽高 改变
+        oDiv2.style.width = 400 * scale + 'px';
+        oDiv2.style.height = 400 * scale + 'px';
+        // 自定义文字查看滚动条,高度范围为 父级高度 减去 子级高度
+        oDiv4.style.top = (oDiv3.offsetHeight - oDiv4.offsetHeight) * scale + 'px';
+
+      };
+
+      function mouseUp() {
+        this.onmousemove = null;
+        this.onmouseup = null;
+
+        if (oDiv.releaseCapture) {
+          oDiv.releaseCapture()
+        }
+      };
+    };
+  </script>
+</body>
+
+</html>

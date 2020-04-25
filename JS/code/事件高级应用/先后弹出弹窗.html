@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="button" value="按钮" id="btn">
+<script>
+  var oBtn = document.getElementById('btn');
+  // 无法按顺序弹出弹窗
+  oBtn.onclick = function(){
+    alert('a');
+  };
+  oBtn.onclick = function(){
+    alert('b');
+  };
+</script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <textarea  id="txt1" cols="30" rows="10"></textarea>
+  <input type="button" value="运行" id="btn">
+  <script>
+    var oTxt = document.getElementById('txt1');
+    var oBtn = document.getElementById('btn');
+
+    oBtn.onclick = function(){
+      // 打开空白窗口
+      var newWin = window.open('about:blank','_blank');
+      // 向空白窗口写入代码
+      newWin.document.write(oTxt.value);
+    };
+  </script>
+</body>
+
+</html>

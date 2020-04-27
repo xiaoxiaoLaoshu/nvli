@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #div1 .active {
+      background-color: yellow;
+    }
+
+    #div1 input {
+      background-color: white;
+    }
+
+    #div1 div {
+      width: 200px;
+      height: 200px;
+      background-color: #ccc;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1">
+    <input class="active" type="button" value="aaa">
+    <input type="button" value="bbb">
+    <input type="button" value="ccc">
+    <div style="display: block;">dfsfsg</div>
+    <div>adfsgfgyrfs</div>
+    <div>adsfsgdfhfhsr</div>
+  </div>
+  <script>
+    function TabSwitch(id){
+      var oDiv = document.getElementById(id);
+      this.aBtn = oDiv.getElementsByTagName('input');
+      this.aDiv = oDiv.getElementsByTagName('div');
+      var that = this;
+      for (var i = 0; i < this.aBtn.length;i++) {
+        this.aBtn[i].index = i;
+        this.aBtn[i].onclick = function(){
+          // 添加事件中 this 的指向
+          that.fnClick(this);
+        };
+      }
+    }
+    TabSwitch.prototype.fnClick = function (oBtn) {
+        for (var j = 0; j < this.aBtn.length;j++) {
+          this.aBtn[j].className = '';
+          this.aDiv[j].style.display = 'none';
+        }
+        oBtn.className = 'active';
+        this.aDiv[oBtn.index].style.display = 'block';
+      }
+      new TabSwitch('div1');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <textarea id="txt1" cols="30" rows="10"></textarea>
+  <input type="button" value="过滤" id="btn">
+  <textarea id="txt2" cols="30" rows="10"></textarea>
+  <script>
+    var oTxt1 = document.getElementById('txt1');
+    var oTxt2 = document.getElementById('txt2');
+    var oBtn = document.getElementById('btn');
+
+    oBtn.onclick = function(){
+      var re = /淘宝|北京|百度/g;
+      oTxt2.value = oTxt1.value.replace(re, '**');
+    };
+  </script>
+</body>
+
+</html>

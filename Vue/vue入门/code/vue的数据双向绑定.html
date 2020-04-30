@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+      <input type="text" v-model.lazy="message">
+      <p>The message is {{message}}</p>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message: '',
+      }
+  })
+    </script>
+</body>
+
+</html>

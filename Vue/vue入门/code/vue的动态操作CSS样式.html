@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .yellow {
+      color: yellow;
+    }
+  .black {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="app">
+      <!-- 使用 计算属性 改变 CSS 样式 -->
+      <!-- <button @click="isActive = !isActive">点击改变字体颜色</button>
+      <p :class="changeColor" >这是测试代码！！！！</p> -->
+      <!-- 使用 方法 改变 CSS 样式 -->
+      <button @click="changeColor()">点击改变字体颜色</button>
+      <p :class="{yellow: isActive,black: !isActive}" >这是测试代码！！！！</p>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        isActive: true,
+      },
+      methods:{
+        changeColor: function(){
+          this.isActive = !this.isActive;
+        }
+      },
+      computed:{
+        // changeColor: function(){
+        //   return {
+        //     yellow:this.isActive,
+        //     black:!this.isActive
+        //   };
+        // }
+      }
+  });
+    </script>
+</body>
+
+</html>

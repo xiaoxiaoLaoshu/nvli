@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+      A:<input type="text" v-model.lazy.number="a">
+      B:<input type="text" v-model.lazy.number="b">
+      <!-- <button @click="add">add</button>
+      <button @click="sub">sub</button> -->
+      <p>A:{{a}} {{str}} B:{{b}}result:{{sub}}</p>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        a: 0,
+        b: 0,
+        result: 0,
+        str: ''
+      },
+      // methods:{
+      //   add: function(){
+      //     this.str = ' + ';
+      //     console.log('+');
+      //     this.result = this.a + this.b;
+      //   },
+      //   sub: function(){
+      //     this.str = ' - ';
+      //     console.log('-');
+      //     this.result = this.a - this.b;
+      //   },
+      // },
+      computed:{
+        add: function(){
+          this.str = ' + ';
+          this.result = this.a + this.b;
+          return this.result;
+        },
+        sub: function(){
+          this.str = ' - ';
+          this.result = this.a - this.b;
+          return this.result;
+        },
+      }
+  })
+    </script>
+</body>
+
+</html>

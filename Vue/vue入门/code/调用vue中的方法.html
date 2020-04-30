@@ -1,0 +1,18 @@
+	<div id="app">
+    <input type="text" v-bind:value="show('小敏')">
+  </div>
+<!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      age: 18,
+    },
+    methods:{
+      show: function(name){
+        return name + 'is' + this.age;
+      }
+    },
+})
+  </script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #canves {
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+	<div id="app">
+    <!-- 鼠标单击事件 -->
+    <button v-on:click="add(1)">加一岁</button>
+    <button v-on:click="sub(1)">减一岁</button>
+    <!-- 鼠标双击事件 -->
+    <button @dblclick="add(10)">加十岁</button>
+    <button @dblclick="sub(10)">减十岁</button>
+    <p>小敏的年龄是{{age}}</p>
+    <div id="canves" @mousemove="showXY">
+      <!-- 鼠标移动事件 -->
+        {{x}},{{y}}
+      </div>
+  </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      age: 18,
+      x: 0,
+      y: 0
+    },
+    methods:{
+      add: function(num){
+        this.age += num;
+      },
+      sub: function(num){
+        if(this.age < num){
+          this.age = 0;
+        }
+        else {
+          this.age -= num;
+        }
+      },
+      // 获取 该事件的 某些 属性，使用 参数 event 指定该事件
+      showXY: function(event){
+        this.x = event.offsetX;
+        this.y = event.offsetY;
+      }
+    }
+});
+  </script>
+</body>
+
+</html>

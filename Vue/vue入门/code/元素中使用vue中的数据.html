@@ -1,0 +1,13 @@
+	<div id="app">
+    第一次使用Vue，{{message}}
+  </div>
+<!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      message: 'hello,world',
+    }
+})
+  </script>

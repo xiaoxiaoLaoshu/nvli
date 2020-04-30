@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>使用JS方法引入Vue</title>
+  <!-- 载入 Vue 的js文件 -->
+  <!-- 1. 使用 CDN 方式 引入 JS 文件 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <!-- 2. 在本地引入 JS 文件 -->
+  <!-- <script src="../js/vue.js"></script> -->
+</head>
+
+<body>
+  	<div id="app">
+      {{message}}
+      <p>{{greet('evening')}}</p>
+      <p>{{hello()}}</p>
+      <div v-html="webTag1"></div>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message: 'Hello,world!',
+        webTag1:"<p>这是段落~~~</p>",
+        webTag2:"<p>这是段落~~~</p>",
+      },
+      methods:{
+        // 有参数 和 使用到自身的存储的数据,有数据返回
+        greet: function(time){
+          return 'Good' + time + this.name;
+        },
+        hello: function(){
+        // 没有参数 和 没有数据返回
+          console.log(this.message);
+        }
+      },
+  });
+    </script>
+</body>
+
+</html>

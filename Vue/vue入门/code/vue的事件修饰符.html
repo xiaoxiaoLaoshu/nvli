@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #canves {
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+	<div id="app">
+    <!-- 鼠标单击事件 -->
+    <!-- 使用修饰符指定事件只能产生一次 -->
+    <button v-on:click.one="add(1)">加一岁</button>
+    <button v-on:click="sub(1)">减一岁</button>
+    <!-- 鼠标双击事件 -->
+    <button @dblclick="add(10)">加十岁</button>
+    <button @dblclick="sub(10)">减十岁</button>
+    <p>小敏的年龄是{{age}}</p>
+    <div id="canves" @mousemove="showXY">
+      <!-- 鼠标移动事件 -->
+        {{x}},{{y}}
+        <!-- 使用 js 来停止 冒泡事件 -->
+        <!-- - <span @mousemove="stopXY">Stop Move</span> -->
+        <!-- vue 修饰符 来停止 冒泡事件 -->
+        - <span @mousemove.stop="stopXY">Stop Move</span>
+
+      </div>
+      <!-- 阻止默认事件 -->
+      <a href="http://baidu.com" @click.prevent="alert">跳转到百度</a>
+  </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      age: 18,
+      x: 0,
+      y: 0
+    },
+    methods:{
+      add: function(num){
+        this.age += num;
+      },
+      sub: function(num){
+        if(this.age < num){
+          this.age = 0;
+        }
+        else {
+          this.age -= num;
+        }
+      },
+      // 获取 该事件的 某些 属性，使用 参数 event 指定该事件
+      showXY: function(event){
+        this.x = event.offsetX;
+        this.y = event.offsetY;
+      },
+      stopXY: function(event){
+        // 阻止事件的冒泡，来停止显示 XY
+        event.cancelBubble = true;
+      },
+      alert: function(){
+        alert('阻止了链接点击的跳转行为');
+      }
+    }
+});
+  </script>
+</body>
+
+</html>

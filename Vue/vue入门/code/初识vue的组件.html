@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+    <div id="app1">
+      <h1>app1</h1>
+      <greeting></greeting>
+    </div>
+    <div id="app2">
+      <h1>app2</h1>
+      <greeting></greeting>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    // 声明全局组件 Vue.component("component.name", {})
+    Vue.component("greeting", {
+      template:`
+        <p>
+          {{name}}这是在学习Vue的组件开发，全局组件。
+          <button @dblclick="changeName">改名</button>
+          </p>
+      `,
+      data() {
+        return {
+          name: '小敏，'
+        }
+      },
+      methods: {
+        changeName() {
+          this.name = "小王，"
+        }
+      }
+    });
+    const app1 = new Vue({
+      el:"#app1",
+  });
+  const app2 = new Vue({
+      el:"#app2",
+  });
+    </script>
+</body>
+
+</html>

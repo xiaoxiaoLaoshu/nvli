@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <label>姓名：</label>
+    <input type="text" ref="name" @keyup="getName">
+    <span ref="out1">{{name}}</span>
+    <label>年龄：</label>
+    <input type="text" ref="age" @keyup="getAge">
+    <span>{{age}}</span>
+  </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        name: '',
+        age: 18
+      },
+      methods: {
+        getName: function(){
+          this.name = this.$refs.name.value;
+          this.$refs.out1.style.fontSize = 20 + 'px';
+        },
+        getAge: function(){
+          this.age = this.$refs.age.value;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

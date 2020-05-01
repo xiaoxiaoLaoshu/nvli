@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app1">
+      <h1>{{title}}</h1>
+      <p>{{greet}}</p>
+      <p v-if="show">{{message}}</p>
+      <button @click="show = !show">showHello</button>
+    </div>
+    <div id="app2">
+      <h2>{{title}}</h2>
+      <p>{{greet}}</p>
+      <button @click="changeOne">changeOne</button>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app1 = new Vue({
+      el:"#app1",
+      data() {
+        return {
+          title: "This is app one",
+          message: "hello,world",
+          show: false
+        };
+      },
+      methods: {
+      },
+      computed: {
+        greet() {
+          return "This is app one computed";
+        }
+      }
+  });
+  const app2 = new Vue({
+      el:"#app2",
+      data() {
+        return {
+          title: "This is app two"
+        }
+      },
+      methods: {
+        changeOne() {
+          app1.title = "This is app tow change app one!"
+        }
+      },
+      computed: {
+        greet() {
+          return "This is app one computed";
+        }
+      }
+  });
+    </script>
+</body>
+
+</html>

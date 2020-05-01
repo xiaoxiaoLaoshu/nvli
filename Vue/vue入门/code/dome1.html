@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #bag {
+      width: 200px;
+      height: 500px;
+      margin: 0 auto;
+      background: url(img/bag.png) center no-repeat;
+      background-size: 80%;
+    }
+    #bag.burst {
+      background: url(img/bag-burst.png) center no-repeat;
+      background-size: 80%;
+    }
+
+    #bag-health {
+      width: 200px;
+      border: 2px solid #000;
+      margin: 0 auto 20px auto;
+    }
+
+    #bag-health div {
+      height: 20px;
+      background-color: crimson;
+    }
+
+    #controls {
+      width: 120px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  	<div id="app">
+      <!-- bag image -->
+      <div id="bag" :class="{burst: ended}">
+
+      </div>
+      <!-- bag health -->
+      <div id="bag-health">
+        <div :style="{width: health + '%'}"></div>
+      </div>
+      <!-- game control -->
+      <div id="controls">
+        <button @click="punch" v-show="!ended">Punch</button>
+        <button @click="restart">Restart</button>
+      </div>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return {
+          health: 100,
+          ended: false
+        };
+      },
+      methods: {
+        punch() {
+          this.health -= 10;
+          if (this.health <= 0) {
+            this.ended = true;
+          }
+        },
+        restart() {
+          this.health = 100;
+          this.ended = false;
+        }
+      },
+      computed: {}
+  });
+    </script>
+</body>
+
+</html>

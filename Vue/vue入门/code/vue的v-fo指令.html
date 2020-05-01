@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+	<div id="app">
+    <h1>v-for指令</h1>
+      <p>
+        {{charcators[0]}}
+        {{charcators[1]}}
+        {{charcators[2]}}
+        {{charcators[3]}}
+      </p>
+      <!-- <ul>
+        <li v-for="value in charcators">{{value}}</li>
+      </ul>
+      <ul>
+        <li v-for="(value, items) in charcators">{{items + 1}}:{{value}}</li>
+      </ul> -->
+      <!-- 遍历 数组 -->
+      <ul>
+        <li v-for="(value, items) in users">
+          {{value.name}}.{{value.age}}:{{items}}
+        </li>
+      </ul><ul>
+        <!-- 遍历 对象 -->
+        <li v-for="(value, items) in object">
+          {{items}}:{{value}}
+        </li>
+      </ul>
+    </div>
+<!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      charcators: ["小敏", "小红", "小王", "小吴"],
+      users:[
+        {name:"小敏", age:18},
+        {name:"小红", age:16},
+        {name:"小王", age:17},
+        {name:"小无", age:19},
+      ],
+      object: {
+        name: "小敏",
+        age: 18,
+        gender: "woman",
+        hobbies: ["羽毛球", "象棋", "篮球"]
+      }
+    }
+})
+  </script>
+</body>
+
+</html>

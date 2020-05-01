@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>FETCH请求</h1>
+  <div id="app">
+    <!-- 使用 post 方法 提交数据 -->
+    <form @submit.prevent="onSubmit">
+      <input type="text" v-model="todo.title">
+      <input type="checkbox" v-model="todo.completed">
+      <input type="submit" value="提交">
+    </form>
+    <ul>
+      <li v-for="todo in todos">
+        <h3>{{todo.title}}</h3>
+        <p v-if="todo.completed">{{todo.completed}}</p>
+      </li>
+    </ul>
+  </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          todos: [],
+          todo: {
+            title: "",
+            completed: false
+          }
+        };
+      },
+      mounted() {
+        // fetch api 请求接口
+        // 使用 get 获取数据
+        const todos = fetch("http://jsonplaceholder.typicode.com/todos").then(res => {
+          return res.json();
+        })
+        .then(todos => {
+          this.todos = todos;
+        });
+      },
+      methods: {
+        // 使用 POST 方法 提交数据
+        onSubmit() {
+          fetch("http://jsonplaceholder.typicode.com/todos", {
+            method: "POST",
+            body: JSON.stringify(this.todo),
+            headers: {
+              "Content-type":"application/json"
+            }
+          })
+          .then(res => {
+            return res.json();
+          })
+          .then(todo => {
+            // console.log(todo);
+            this.todos.unshift(todo);
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

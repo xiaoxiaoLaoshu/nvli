@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  	<div id="app">
+      <button @click="error = !error">Error</button>
+      <button @click="success = !success">Success</button>
+      <div v-if="error">网络连接错误：404</div>
+      <div v-else-if="success">网络连接成功：200</div>
+      <div v-else>默认连接</div>
+      <div v-show="error"> v-show 默认连接</div>
+    </div>
+  <!-- 使用 JS 的方式 引入 vue 的文件 -->
+    <script src="../js/vue.js"></script>
+    <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        error: false,
+        success: false
+      },
+  })
+    </script>
+</body>
+
+</html>

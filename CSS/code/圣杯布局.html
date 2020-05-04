@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>实现三栏水平布局之圣杯布局</title>
+  <style>
+    .left {
+      width: 300px;
+      background-color: lightblue;
+    }
+    
+    .center {
+      background-color: violet;
+    }
+
+    .right {
+      width: 200px;
+      background-color: lightgreen;
+    }
+
+    /* 圣杯布局的关键代码 */
+    .left,
+    .center,
+    .right {
+      float: left;
+      position: relative;
+      min-height: 200px;
+    }
+
+    .center {
+      width: 100%;
+    }
+    
+    .container {
+      overflow: hidden;
+      padding-left: 300px;
+      padding-right: 200px;
+    }
+    
+    .left {
+      margin-left: -100%;
+      left: -300px;
+    }
+
+    .right {
+      margin-left: -200px;
+      right: -200px;
+    }
+
+    /* flex 布局 */
+    #flex {
+      display: flex;
+    }
+
+
+    #left {
+      width: 30vw;
+      background-color: lightgreen;
+    }
+
+    #center {
+      flex: 1;
+      background-color: violet;
+    }
+
+    #right {
+      width: 20vw;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="center">
+    </div>
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <div id="flex">
+    <div id="left">aaa</div>
+    <div id="center">flex 布局</div>
+    <div id="right">aaa</div>
+  </div>
+</body>
+
+</html>

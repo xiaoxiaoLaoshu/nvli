@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>实现两栏/三栏布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    /* 方法1 采用浮动 */
+    .container {
+      width: 100%;
+      min-height: 300px;
+      overflow: auto;
+      margin-bottom: 20px;
+    }
+    .left{
+      float: left;
+      height: 200px;
+    }
+
+    .left {
+      width: 200px;
+      background-color: lightblue;
+    }
+
+    .right {
+      background-color: lightgreen;
+      min-height: 200px;
+    }
+    /* 方法2：定位的方式来实现布局  */
+    .container.absolute {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .container.absolute>.left,
+    .container.absolute .right {
+      position: absolute;
+      left: 0;
+    }
+
+    .container.absolute>.left {
+      width: 300px;
+      background-color: lightblue;
+    }
+    
+    .container.absolute>.right {
+      background-color: lightgreen;
+      margin-left: 300px;
+      right: 0;
+    }
+
+    /* 方法3 使用 flex 布局的实现 */
+    .container.flex {
+      width: 100%;
+      min-height: 300px;
+      display: flex;
+    }
+
+    .container.flex:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .container.flex .left {
+      width: 300px;
+      background-color: lightblue;
+    }
+
+    .container.flex.right {
+      flex: 1;
+      background-color: lightgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 两栏，左边固定，内容撑开自适应 -->
+  <div class="container">
+    <div class="left"></div>
+    <div class="right">
+      <h1>浮动的两栏布局</h1>
+      <p>两栏布局的中间部分</p>
+    </div>
+  </div>
+  <div class="contailer absolute">
+    <div class="left"></div>
+    <div class="right">
+      <h1>定位的两栏布局</h1>
+      <p>两栏布局的中间部分</p>
+    </div>
+    <div class="contailer flex">
+      <div class="left"></div>
+      <div class="right">
+        <h1>flex的两栏布局</h1>
+        <p>两栏布局的中间部分</p>
+      </div>
+  </div>
+  <!-- 三栏布局 -->
+</body>
+
+</html>

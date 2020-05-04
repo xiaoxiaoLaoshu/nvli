@@ -1,38 +1,29 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <user :users="users"></user>
-    <app-footer></app-footer>
+    <keep-alive>
+    <component :is="component"></component>
+    </keep-alive>
+    <button @click="component = 'form-one'">show form one</button>
+    <button @click="component = 'form-two'">show form two</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import User from './components/User.vue'
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-
+import FormOne from './components/FromOne'
+import FormTwo from './components/FormTwo'
 export default {
   name: 'App',
   data(){
     return {
-      users: [
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-        {name: '小敏', wechat: 783294873, show: false},
-      ]
+      component: 'form-two'
     }
   },
+  methods: {
+    
+  },
   components: {
-    HelloWorld,
-    User,
-    "app-header": Header,
-    "app-footer": Footer,
+    "form-one": FormOne,
+    "form-two": FormTwo
   }
 }
 </script>

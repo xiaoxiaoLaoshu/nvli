@@ -6,6 +6,15 @@
         <p v-show="user.show">{{user.wechat}}</p>
         </li>
     </ul>
+    <button @click="deleteUser">deleteUser</button>
+    <!-- 传引用 -->
+    <ul>
+      <li v-for="(user,index) in users" :key="index" @click="user.show = !user.show">
+        <h3>{{user.name}}</h3>
+        <p v-show="user.show">{{user.wechat}}</p>
+        </li>
+    </ul>
+    <button @click="deleteUser">deleteUser</button>
   </div>
 </template>
 
@@ -16,7 +25,9 @@ export default {
     return {};
   },
   methods: {
-    
+    deleteUser(){
+      this.users.pop();
+    }
   }
 };
 </script>

@@ -57,12 +57,7 @@ export default {
   methods: {
     // 接口地址 https://jsonplaceholder.typicode.com/
     post() {
-      this.$http
-        .post("https://jsonplaceholder.typicode.com/posts", {
-          title: this.blog.title,
-          body: this.blog.content,
-          userId: 1
-        })
+      this.$http.post('https://vueblog-adc33.firebaseio.com/posts.json',this.blog,)
         .then(function(data) {
           console.log(data);
           this.submited = true;

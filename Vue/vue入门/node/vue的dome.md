@@ -149,7 +149,6 @@
   })
   ```
 - 路由参数,使用路由参数来实现具体博客的展示
-  
   1. 在 routes.js 中，绑定路径和可变的唯一参数 `{path:"/blog/:id",component: SingleBlog},` 这里绑定的 可变的唯一参数是 id,数据中必须有 id 参数，引入 SingleBlog 文件
   2. 创建 SingleBlog 组件
     1. 接受来自路由的数据 id，在 data 中接收 `id: this.$route.params.id`
@@ -177,5 +176,34 @@
     ```
   2. 取数据，使用 git 方式获取数据
     ```js
-      
+      created() {
+        this.$http
+          .get("https://vueblog-adc33.firebaseio.com/posts.json")
+          .then(function(data) {
+            // console.log(data.json());
+            return data.json();
+            // this.blogs = data.body.slice(0, 10);
+          })
+          .then(function(data){
+            var blogsArray = [];
+            for(let key in data){
+              // console.log(data[key]);
+              data[key].id = key;
+              blogsArray.push(data[key]);
+            }
+            // console.log(blogArray);
+            this.blogs = blogsArray;
+            // console.log(this.blogs);
+          })
+          ;
+      },
     ```
+- 项目打包上线 `npm run bulid`,会生成 dist 文件夹，里面有打包好的 css 文件夹、 js 文件夹和 index.html 首页，接着可以将 dist 文件夹，上传到 服务器 中即可在浏览器中真实访问到项目。
+- 总结：
+  1. 组件的编写符合 W3C 的规范
+  2. 可以使用**自定义指令**来完成特定的功能
+  3. 使用**vue的过滤器**来实现特定的功能，搜索功能的实现使用的是 ES6 中的过滤器方法
+  4. 页面的跳转使用**vue的路由**实现，局部替换使用`<router-view></router-view>`,使用`<router-link to="url"></router-link>`创建跳转的链接
+  5. 实现与数据库交流，数据的获取和数据的提交
+    1. 数据的获取 使用 get 方式获取，注意数据的调试过程
+    2. 数据的提交，使用 post 方式提交，注意 **COPS** 问题

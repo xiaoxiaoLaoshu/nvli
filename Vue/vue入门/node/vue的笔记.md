@@ -462,7 +462,7 @@
   + 全局组件使用，在 **main.js** 中操作
     1. 引入组件 `import User from './components/User.vue'`
     2. 注册全局组件 `Vue.component("Users", User)`
-    3. 模板中使用 全局组件 `<user></user>`
+    3. 任意模板中使用 全局组件 `<user></user>`
   + 局部组件使用，在 **父组件** 中操作
     1. 在 父组件 中引入 子组件 `import User from './components/User.vue'`
     2. 注册子组件 
@@ -475,7 +475,7 @@
           }
         }
       ```
-    3. 模板中调用 子组件 `<user></user>`
+    3. 父组件模板中调用 子组件 `<user></user>`
   + 在 子组件中使用 遍历 必须绑定 key 值(唯一值，可以使用 ID 或数组的 index)，不然会报错。`<ul><li v-for="(user,index) in users" :key="index">{{user}}</li></ul>`
 - 组件中的 CSS 控制
   + 全局生效 去除 `<style></style>` 的 scoped 属性

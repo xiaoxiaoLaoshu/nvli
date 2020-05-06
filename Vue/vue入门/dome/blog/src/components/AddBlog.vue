@@ -27,7 +27,7 @@
       <h3>博客发布成功</h3>
     </div>
     <div id="preview">
-      <h3>博客总览</h3>
+      <h3>博客预览</h3>
       <p>博客标题：{{blog.title}}</p>
       <p>博客内容</p>
       <p>{{blog.content}}</p>

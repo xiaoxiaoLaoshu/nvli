@@ -3,7 +3,7 @@
     <h1>填充以下表单内容</h1>
     <div class="info">
       <h3>From One - Contact Us</h3>
-      <p>填写以下内容</p>
+      <p>填写以下内容{{info}}</p>
     </div>
     <div class="userInfo">
       <input type="text" placeholder="name">
@@ -22,7 +22,22 @@
 
 <script>
 export default {
-
+  props: {
+    msg: {
+      type: String
+    }
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+  },
+  computed: {
+    info() {
+      return this.msg;
+    }
+  }
 }
 </script>
   

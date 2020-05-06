@@ -1,13 +1,13 @@
 <template>
   <footer>
-    <p>{{copyright}}{{title}}</p>
+    <p>{{copyright}}{{info}}</p>
   </footer>
 </template>
 
 <script>
 export default {
   props:{
-    title:{
+    msg:{
       style:String
     }
   },
@@ -17,7 +17,11 @@ export default {
     }
   },
   methods: {
-    
+  },
+  computed: {
+    info() {
+      return this.msg;
+    }
   }
 };
 </script>

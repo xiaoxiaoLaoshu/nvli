@@ -11,6 +11,8 @@
 - string `let b = 'hello'; alert(typeof b);` 
 - boolean `let a = true; alert(typeof a);`
 - undefined `let b; alert(typeof b)` `alert(typeof b)`
+- null `let b = null; alert(typeof b);`
+- symbol `let b = symbol; alert(typeof b)` 
  1. 定义了变量，没有赋值
  2. 没有声明，直接使用
 - object `alert(document)`;

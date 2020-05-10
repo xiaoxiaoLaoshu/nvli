@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>让一个 div 水平垂直居中</title>
+  <style>
+    .container1 {
+      position: relative;
+      height: 200px;
+      /* overflow: hidden; */
+      background-color: lightblue;
+      margin-bottom: 10px;
+    }
+    /* 子元素拥有 宽度和高度 */
+    /* 方法 1 */
+    .child1 {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+      background-color: crimson;
+    }
+    /* 子元素拥有 宽度 和 高度 */
+    /* 方法 2 */
+    .container2 {
+      position: relative;
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+    }
+
+    .child2 {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background-color: crimson;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 方法 3 */
+    .container3 {
+      position: relative;
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+    }
+
+    .child3 {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: crimson;
+    }
+    /* 子元素没有给定 宽高 */
+    /* 方法 4 */
+    .container4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+    }
+
+    .child4 {
+      width: 20%;
+      height: 80%;
+      background-color: crimson;
+    }
+
+    /* 方法 5 */
+    .container5 {
+      height: 200px;
+      background-color: lightblue;
+      display: grid;
+      margin-bottom: 10px;
+    }
+
+    .child5 {
+      justify-self: center;
+      align-self: center;
+      width: 20%;
+      height: 80%;
+      background-color: crimson;
+    }
+    /* 方法 6 */
+    .container6 {
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+      display: flex;
+    }
+
+    .child6 {
+      width: 20%;
+      height: 80%;
+      background-color: crimson;
+      margin: auto;
+    }
+    /* 方法 7 */
+    .container7 {
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .child7 {
+      width: 20%;
+      height: 80%;
+      background-color: crimson;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container1">
+    <div class="child1"></div>
+  </div>
+  <div class="container2">
+    <div class="child2"></div>
+  </div>
+  <div class="container3">
+    <div class="child3"></div>
+  </div>
+  <div class="container4">
+    <div class="child4"></div>
+  </div>
+  <div class="container5">
+    <div class="child5"></div>
+  </div>
+  <div class="container6">
+    <div class="child6"></div>
+  </div>
+  <div class="container7">
+    <div class="child7"></div>
+  </div>
+</body>
+
+</html>

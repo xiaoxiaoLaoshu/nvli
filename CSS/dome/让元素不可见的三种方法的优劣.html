@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .container {
+      height: auto;
+      background-color: lightblue;
+    }
+
+    .div1 {
+      width: 100px;
+      height: 100px;
+      display: none;
+    }
+
+    .child {
+      width: 50px;
+      height: 50px;
+    }
+
+    .div2 {
+      width: 100px;
+      height: 100px;
+      visibility: hidden;
+    }
+
+    .div3 {
+      width: 100px;
+      height: 100px;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="div1">
+      <div class="child"></div>
+    </div>
+    <div class="div2">
+      <div class="child"></div>
+    </div>
+    <div class="div3">
+      <div class="child"></div>
+    </div>
+  </div>
+  <script>
+    var aChilds = document.querySelectorAll('.child');
+    var oDiv1 = document.getElementsByClassName('div1')[0];
+    var oDiv2 = document.getElementsByClassName('div2')[0];
+    var oDiv3 = document.getElementsByClassName('div3')[0];
+
+    oDiv1.onclick = function() {
+      alert('display show');
+      aChilds[0].style.display = 'block';
+    }
+      aChilds[1].style.visibility = 'visible';
+      aChilds[1].style.backgroundColor = 'crimson';
+
+    oDiv3.onclick = function() {
+      alert('opacity show');
+      aChilds[2].style.backgroundColor = 'crimson';
+      oDiv3.style.opacity = '1';
+      aChilds[2].style.opacity = '1';
+    }
+
+    
+  </script>
+</body>
+
+</html>

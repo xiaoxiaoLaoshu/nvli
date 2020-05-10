@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>BFC及其应用</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: greenyellow;
+      margin: 100px;
+    }
+
+    .container {
+      width: 600px;
+      height: auto;
+      overflow: hidden;
+      border: 1px solid black;
+    }
+
+    .left {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: lightgreen;
+      float: left;
+    }
+
+    .right {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: crimson;
+      float: right;
+    }
+
+    .absolute {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: lightgreen;
+      position: absolute;
+    }
+
+    .fixed {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: crimson;
+      position: fixed;
+    }
+
+    .inline {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: lightgreen;
+      display: inline-block;
+    }
+
+    .table {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: crimson;
+      display: table-cell;
+    }
+
+    .flex {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: lightcoral;
+      display: flex;
+    }
+
+    .hidden {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: lightgreen;
+      overflow: hidden;
+    }
+
+    .auto {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: crimson;
+      overflow: auto;
+    }
+
+    .scroll {
+      width: 100px;
+      height: 100px;
+      margin: 100px 0;
+      background-color: lawngreen;
+      overflow: scroll;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 产生 BFC 的条件 -->
+  <!-- 1. html 根元素 -->
+  <div></div>
+  <div></div>
+  <!-- 2. 浮动元素： float除 none 以外的值 -->
+  <div class="container">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <!-- 3. 绝对定位元素 position(absolute fixed) -->
+  <div class="container">
+    <div class="absolute"></div>
+    <div class="fixed"></div>
+  </div>
+  <!-- 4. display 为 inline-block table-cell flex -->
+  <div class="container">
+    <div class="inline"></div>
+    <div class="table"></div>
+    <div class="flex"></div>
+  </div>
+  <!-- 5. overflow 除了 visible 以外的值 -->
+  <!-- 应用 1：外边距重叠问题 -->
+  <div class="container">
+    <div class="hidden"></div>
+    <div class="auto"></div>
+    <div class="scroll"></div>
+  </div>
+  <!-- 应用 2：清楚浮动 -->
+  <div class="container">
+    <div class="left"></div>
+  </div>
+  <!-- 应用 3：实现两栏自适应布局 -->
+  <div class="left">我是一个左浮动的元素</div>
+  <div class="container" style="height: 200px;">我是一个没有设置浮动, 
+    也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
+</body>
+
+</html>

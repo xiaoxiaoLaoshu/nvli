@@ -213,3 +213,31 @@
     2. 父传子使用数据绑定和 props 接受数据
   - 翻译kpi的使用
     - 使用 v-resource 的 post 方法去将翻译的内容发送个 翻译kpi ，随后将返回的结果通过 父传子 渲染到子组件中
+  - 样式使用 bootstrap4
+
+- 后台管理系统
+  - json-server 实现数据的动态更改
+    1. 安装全局 json-server  `npm install -g json-server`
+    2. 创建项目目录 初始化 package.json 文件，才可以安装各种插件 `npm init`
+    3. 在项目中安装 json-server `npm install json-server --save`
+    4. 更改启动的命令 在 package.json 中的 `"test": "echo \"Error: no test specified\" && exit 1"` 改为 自定义的启动命令 `"json-server": "json-server --watch db.json"`
+    5. 创建存储数据的动态文件 db.json 
+    6. 启动 json-server `npm rum json-server`
+  - 数据的增删查改
+    - 获取所有用户信息 http://localhost:3000/users
+    - 获取 id 为 1 的用户信息 http://localhost:3000/users/1
+    - 获取所有公司的信息 http://localhost:3000/companies
+    - 获取 公司 id 为 3 的用户信息 http://localhost:3000/companies/3/users
+    - 获取公司名为 Micorsoft 的信息 http://localhost:3000/companies?name=Micorsoft
+    - 根据多个名字获取公司信息 http://localhost:3000/companies?name=Micorsoft&name=Apple
+    - 分页操作 一页获取两条数据 http://localhost:3000/companies?_page=1&_limit=2
+    - 数据排序 根据名字排序  asc 升序 desc 降序 http://localhost:3000/companies?_sort=name&_order=desc
+    - 获取用户年龄18及18以上的信息 http://localhost:3000/users?age_gte=18
+    - 获取用户年龄为18到20之间信息 http://localhost:3000/users?age_gte=18&age_lte=20
+    - 搜索用户信息 http://localhost:3000/users?q=18
+    - 使用 postman 实现数据的增删改
+    - 使用 post 方式 添加数据 添加请求头，说明发送的数据格式 Content-type:application/json ,编写 添加的数据
+    - 使用 delete 方式 删除数据 删除用户id为5的信息 http://localhost:3000/users/5
+    - 使用 patch 方式 更新数据 用户id为3的 name 值 http://localhost:3000/users/3
+    - 使用 jsonplaceholder 的数据，配置 package.json 信息 在 scripts 中 添加 `"json:server": "json-server http://jsonplaceholder.typicode.com/db"`,然后重新启动 `npm run json:server`
+  - 

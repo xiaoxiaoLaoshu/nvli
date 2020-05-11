@@ -1,0 +1,8 @@
+- HTML (超文本标记语言)
+- HTML 是一套标记语言，其指代的是一套标记标签
+- 标签由<>
+- HTML文档要在网页上正常显示中文，需要规定HEML文档编码方式 `<meta charset='utf-8'>'` gb2312 中文简体 gbk 中文简体和繁体   unicode 万国码 实现方式的一种 utf-8 **UTF-8 最大的一个特点，就是它是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。**ASCII码 
+- `<title></title><meta content=" " name="keywords"><meta content="" name="description">` SEO 网页优化
+- `<html lang="en,zh"></html>` lang 属性 告诉搜索引擎爬虫，我们的网站是关于什么内容的 en 代表英文，zh 代表中文
+- `<p></p>` 段落标签，文字独立成段  `<h1 - 6></h1 - 6>` 标题标签，h1 - h6，文字加粗，字体从大到小 `<strong></strong><em></em><del></del>` 粗体标签、斜体标签、删除线标签 `<address></address>` 地址标签 `<div></div><span></span>` 块级标签、行内标签
+- 

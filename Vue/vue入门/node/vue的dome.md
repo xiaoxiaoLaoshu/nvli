@@ -240,4 +240,8 @@
     - 使用 delete 方式 删除数据 删除用户id为5的信息 http://localhost:3000/users/5
     - 使用 patch 方式 更新数据 用户id为3的 name 值 http://localhost:3000/users/3
     - 使用 jsonplaceholder 的数据，配置 package.json 信息 在 scripts 中 添加 `"json:server": "json-server http://jsonplaceholder.typicode.com/db"`,然后重新启动 `npm run json:server`
+  - 数据完成添加后的页面跳转功能
+    使用路由进行跳转`this.$router.push('/',query:{alert:'发表博客成功！'})`
+- Vuex来管理数据的读取
+  - 安装 Vuex `npm install vuex --save`
   - 

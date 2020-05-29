@@ -244,4 +244,141 @@
     使用路由进行跳转`this.$router.push('/',query:{alert:'发表博客成功！'})`
 - Vuex来管理数据的读取
   - 安装 Vuex `npm install vuex --save`
-  - 
+  - 将数据抽离出来成为单独的数据文件，比如 store.js
+    1. 引入 Vue `import Vue from 'vue'`
+    2. 引入 Vuex `import Vuex from 'vuex'`
+    3. 使用 Vuex `Vue.use(Vuex)`
+    4. 导入数据
+      ```js
+        const store = new Vuex.Store({
+          state: {
+            products: [{
+              name: '马云',
+              price: 200
+            },
+            {
+              name: '马化腾',
+              price: 140
+            },
+            {
+              name: '马冬梅',
+              price: 20
+            },
+            {
+              name: '马蓉',
+              price: 10
+            },
+          ]
+          }
+        })
+      ```
+    5. 公布数据 `export const store = new Vuex.Store()`
+    6. 在main.js文件中引入 store 数据
+      ```js
+      // 引入 store 数据
+      import {store} from './store/store'
+        new Vue({
+          store: store,
+          router,
+          render: h => h(App)
+        }).$mount('#app')
+      ```
+    7. 在组件中使用计算属性来获取数据
+      ```js
+        computed: {
+          product() {
+            return this.$store.state.products;
+          }
+        }
+      ```
+  - 使用方法来改变数据
+    ```js
+      // 在组件中修改
+      computed: {
+        saleProducts() {
+          let saleProducts = this.$store.state.product.map(product => {
+            return {
+              name: '**' + product.name + '**',
+              price: product.price / 2
+            };
+          });
+          return saleProducts;
+        }
+      }
+      // 在源头修改 store.js 文件中修改
+      getters:{
+        saleProducts:(state) => {
+          var saleProducts = state.products.map(product => {
+            return {
+              name: '**' + product.name + '**',
+              price: product.price / 2
+            };
+          });
+          return saleProducts;
+        }
+      }
+      // 组件中使用
+      computed: {
+        saleProducts() {
+          return this.$store.getters.saleProducts;
+        }
+      }
+    ```
+  - 在 store.js 中使用 mutations 来监视数据改变
+    ```js
+      mutation:{
+        saleProducts: state => {
+          return state.products.forEach(product => {
+            product.price -= 1;
+          });
+        }
+      }
+    ```
+  - 处理异步事件，在 store.js 中使用 actions 属性来使用相关的方法
+  ```js
+    mutations: {
+      reducePrice:(state) => {
+        state.products.forEach(product => {
+          product.price -= 1;
+        })
+      }
+    }
+    actions: {
+      reducePrice1:(context) => {
+        setTimeout(function(){
+          context.commit('reducePrice');
+        },2000);
+      }
+    }
+    // 使用参数
+    mutations: {
+      reducePrice:(state, payload) => {
+        state.products.forEach(product => {
+          product.price -= payload;
+        })
+      }
+    }
+    actions: {
+      reducePrice1:(context, payload) => {
+        setTimeout(function(){
+          context.commit('reducePrice', payload);
+        }, 2000);
+      }
+    }
+  ```
+  - 使用 mapGetters 和 mapActions 同时调用多个方法，减少代码量
+  1. 导入相关文件 `import {mapGetters} from 'vuex'` `import {mapActions} from 'vuex'`
+  2. 调用相关方法
+    ```js
+      computed:{
+        ...mapGetters([
+          'saleProducts'
+        ])
+      }
+      methods:{
+        ...mapAction([
+          'reducePrice1'
+        ])
+      }
+      
+    ```
